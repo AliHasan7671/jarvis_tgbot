@@ -46,13 +46,13 @@ def gkick(bot: Bot, update: Update, args: List[str]):
         message.reply_text("You do not seems to be referring to a user")
         return
     if int(user_id) in SUDO_USERS or int(user_id) in SUPPORT_USERS:
-        message.reply_text("OHHH! Someone's trying to gkick a sudo/support user! *Grabs popcorn*")
+        message.reply_text("A sudo/support user war?")
         return
     if int(user_id) == OWNER_ID:
         message.reply_text("Wow! Someone's so noob that he want to gkick my owner! *Grabs Potato Chips*")
         return
     if int(user_id) == bot.id:
-        message.reply_text("OHH! Let's do it! Let me kick myself! And then loose all my users! -_-")
+        message.reply_text("Alert: Dumb detected.")
         return
     chats = get_all_chats()
     message.reply_text("Globally kicking user @{}".format(user_chat.username))
@@ -70,4 +70,4 @@ def gkick(bot: Bot, update: Update, args: List[str]):
 
 GKICK_HANDLER = CommandHandler("gkick", gkick, pass_args=True,
                               filters=CustomFilters.sudo_filter | CustomFilters.support_filter)
-dispatcher.add_handler(GKICK_HANDLER)                              
+dispatcher.add_handler(GKICK_HANDLER)
