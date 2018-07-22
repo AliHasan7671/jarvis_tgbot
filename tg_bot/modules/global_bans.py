@@ -58,7 +58,7 @@ def gban(bot: Bot, update: Update, args: List[str]):
         return
 
     if int(user_id) in SUPPORT_USERS:
-        message.reply_text("Ohh, I am can't GBan a support user.")
+        message.reply_text("Error: Operation failed, a support user detected.")
         return
 
     if user_id == bot.id:
