@@ -52,6 +52,10 @@ def gban(bot: Bot, update: Update, args: List[str]):
     if not user_id:
         message.reply_text("You don't seem to be referring to a user.")
         return
+    
+    if int(user_id) == OWNER_ID:
+        message.reply_text("I can't go against my owner.")
+        return
 
     if int(user_id) in SUDO_USERS:
         message.reply_text("He/She is a sudo user, contact my owner if you have issues with him/her.")
@@ -59,10 +63,6 @@ def gban(bot: Bot, update: Update, args: List[str]):
 
     if int(user_id) in SUPPORT_USERS:
         message.reply_text("He/She is a support user, contact my owner if you have issues with him/her.")
-        return
-    
-    if int(user_id) == OWNER_ID:
-        message.reply_text("I can't go against my owner.")
         return
     
     if user_id == bot.id:
