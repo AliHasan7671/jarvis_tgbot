@@ -54,15 +54,19 @@ def gban(bot: Bot, update: Update, args: List[str]):
         return
 
     if int(user_id) in SUDO_USERS:
-        message.reply_text("A sudo user war?")
+        message.reply_text("He/She is a sudo user, contact my owner if you have issues with him/her.")
         return
 
     if int(user_id) in SUPPORT_USERS:
-        message.reply_text("Error: Operation failed, a support user detected.")
+        message.reply_text("He/She is a support user, contact my owner if you have issues with him/her.")
         return
-
+    
+    if int(user_id) == OWNER_ID:
+        message.reply_text("I can't go against my owner.")
+        return
+    
     if user_id == bot.id:
-        message.reply_text("Nice try.")
+        message.reply_text("Alert: Dumb detected.")
         return
 
     try:
@@ -147,7 +151,7 @@ def ungban(bot: Bot, update: Update, args: List[str]):
 
     banner = update.effective_user  # type: Optional[User]
 
-    message.reply_text("I'll give {} a second chance, globally.".format(user_chat.first_name))
+    message.reply_text("I'm un-gbanning {}.".format(user_chat.first_name))
 
     send_to_list(bot, SUDO_USERS + SUPPORT_USERS,
                  "{} has ungbanned user {}".format(mention_html(banner.id, banner.first_name),

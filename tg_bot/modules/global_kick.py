@@ -45,17 +45,24 @@ def gkick(bot: Bot, update: Update, args: List[str]):
     if not user_id:
         message.reply_text("You do not seems to be referring to a user")
         return
-    if int(user_id) in SUDO_USERS or int(user_id) in SUPPORT_USERS:
-        message.reply_text("A sudo/support user war?")
+    if int(user_id) in SUDO_USERS:
+        message.reply_text("He/She is a sudo user, contact my owner if you have issues with him/her.")
         return
+
+    if int(user_id) in SUPPORT_USERS:
+        message.reply_text("He/She is a support user, contact my owner if you have issues with him/her.")
+        return
+    
     if int(user_id) == OWNER_ID:
-        message.reply_text("Wow! Someone's so noob that he want to gkick my owner! *Grabs Potato Chips*")
+        message.reply_text("I can't go against my owner.")
         return
-    if int(user_id) == bot.id:
+    
+    if user_id == bot.id:
         message.reply_text("Alert: Dumb detected.")
         return
+
     chats = get_all_chats()
-    message.reply_text("Globally kicking user @{}".format(user_chat.username))
+    message.reply_text("Wiping out the crap!")
     for chat in chats:
         try:
              bot.unban_chat_member(chat.chat_id, user_id)  # Unban_member = kick (and not ban)
